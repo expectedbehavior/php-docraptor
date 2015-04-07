@@ -105,7 +105,7 @@ class ApiWrapper
         $filtered = strtolower(trim($document_type));
         $allowedValues = array('xls', 'xlsx', 'pdf');
 
-        if (! in_array($filtered, $allowedValues)) {
+        if (!in_array($filtered, $allowedValues)) {
             throw new InvalidArgumentException(sprintf('Document type must be in %s, %s given.', implode('|', $allowedValues), $filtered));
         }
 
@@ -171,7 +171,7 @@ class ApiWrapper
     {
         $allowedValues = array('none', 'html');
 
-        if (! in_array(strtolower(trim($strict)), $allowedValues)) {
+        if (!in_array(strtolower(trim($strict)), $allowedValues)) {
             throw new InvalidArgumentException(sprintf('Validation type must be in %s, %s given.', implode('|', $allowedValues), $strict));
         }
 
