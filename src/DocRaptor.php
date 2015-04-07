@@ -271,12 +271,12 @@ class ApiWrapper
 
 
     private function filterParam($allowedValues, $param, $paramType) {
-      $filtered = strtolower(trim($param));
+        $filtered = strtolower(trim($param));
 
-      if (!in_array($filtered, $allowedValues)) {
-          throw new InvalidArgumentException(sprintf('%s type must be in %s, %s given.', $paramType, implode('|', $allowedValues), $filtered));
+        if (!in_array($filtered, $allowedValues)) {
+            throw new InvalidArgumentException(sprintf('%s type must be in %s, %s given.', $paramType, implode('|', $allowedValues), $filtered));
       }
 
-      return $filtered;
+        return $filtered;
     }
 }
