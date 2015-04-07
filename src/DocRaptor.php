@@ -98,18 +98,12 @@ class ApiWrapper
     /**
      * @param string $document_type
      * @return $this
-     * @throws Exception
+     * @throws InvalidArgumentException
      */
     public function setDocumentType($document_type)
     {
-        $filtered = strtolower(trim($document_type));
         $allowedValues = array('xls', 'xlsx', 'pdf');
-
-        if (!in_array($filtered, $allowedValues)) {
-            throw new InvalidArgumentException(sprintf('Document type must be in %s, %s given.', implode('|', $allowedValues), $filtered));
-        }
-
-        $this->document_type = $filtered;
+        $this->document_type = $this->filterParam($allowedValues, $document_type, "Document");
         return $this;
     }
 
@@ -165,17 +159,12 @@ class ApiWrapper
      *
      * @param string $strict none: no validation, html: errors out on non-parsable markup
      * @return $this
-     * @throws Exception
+     * @throws InvalidArgumentException
      */
     public function setStrict($strict = 'none')
     {
         $allowedValues = array('none', 'html');
-
-        if (!in_array(strtolower(trim($strict)), $allowedValues)) {
-            throw new InvalidArgumentException(sprintf('Validation type must be in %s, %s given.', implode('|', $allowedValues), $strict));
-        }
-
-        $this->strict = $strict;
+        $this->strict = $this->filterParam($allowedValues, $strict, "Validation");
         return $this;
     }
 
@@ -278,5 +267,16 @@ class ApiWrapper
         }
 
         return $filename ? true : $result;
+    }
+
+
+    private function filterParam($allowedValues, $param, $paramType) {
+      $filtered = strtolower(trim($param));
+
+      if (!in_array($filtered, $allowedValues)) {
+          throw new InvalidArgumentException(sprintf('%s type must be in %s, %s given.', $paramType, implode('|', $allowedValues), $filtered));
+      }
+
+      return $filtered;
     }
 }
