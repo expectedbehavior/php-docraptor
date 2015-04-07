@@ -269,7 +269,16 @@ class ApiWrapper
         return $filename ? true : $result;
     }
 
-
+    /**
+     * Assure a DR parameter is in a list of acceptable params and throw an InvalidArgumentException
+     * if not.
+     *
+     * @param array $allowedValues array of valid string values
+     * @param string $param given parameter value to be checked against allowed
+     * @param string $paramType the kind of parameter taht is being checked
+     * @return string the validated value
+     * @throws InvalidArgumentException
+     */
     private function filterParam($allowedValues, $param, $paramType) {
         $filtered = strtolower(trim($param));
 
