@@ -6,3 +6,6 @@ composer.phar
 
 # composer assets
 /vendor
+
+# ignore the composer lock file because this is a library rather than a project
+composer.lock
