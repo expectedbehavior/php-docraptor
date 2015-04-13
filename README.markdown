@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/expectedbehavior/php-docraptor.svg?branch=master)](https://travis-ci.org/expectedbehavior/php-docraptor) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/expectedbehavior/php-docraptor/badges/quality-score.png?b=scrutinize)](https://scrutinizer-ci.com/g/expectedbehavior/php-docraptor/?branch=scrutinize)
+[![Build Status](https://travis-ci.org/expectedbehavior/php-docraptor.svg?branch=master)](https://travis-ci.org/expectedbehavior/php-docraptor) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/expectedbehavior/php-docraptor/badges/quality-score.png)](https://scrutinizer-ci.com/g/expectedbehavior/php-docraptor/)
 
 #PHP-DocRaptor
 
