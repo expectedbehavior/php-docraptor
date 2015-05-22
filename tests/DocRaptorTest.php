@@ -23,6 +23,11 @@ class DocRaptorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('my-key', $docRaptor->getApiKey());
     }
 
+    public function testVersion()
+    {
+        $this->assertEquals('1.0.1', ApiWrapper::$version);
+    }
+
     public function testCanConstructWithoutApiKey()
     {
         $this->assertNull($this->docRaptor->getApiKey());
