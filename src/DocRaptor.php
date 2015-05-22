@@ -11,6 +11,9 @@ use DocRaptor\Exception\MissingContentException;
  */
 class ApiWrapper
 {
+
+    public static $version = '1.0.1';
+
     /**
      * @var HttpTransferInterface
      */
