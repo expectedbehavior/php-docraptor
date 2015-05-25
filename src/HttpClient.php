@@ -57,7 +57,12 @@ class HttpClient implements HttpTransferInterface
         return $result;
     }
 
+    /**
+     * If you extend this software via a fork or private copy but use it to talk to production
+     * DocRaptor servers, please change the userAgent string to reflect your new repo's name
+     * or at least differ from the official wrapper.
+     */
     public static function userAgent() {
-        return sprintf('expectedbehavior/php-docraptor/%s PHP/%s', ApiWrapper::$version, phpversion());
+        return sprintf('expectedbehavior_php-docraptor/%s PHP/%s', ApiWrapper::$version, phpversion());
     }
 }
