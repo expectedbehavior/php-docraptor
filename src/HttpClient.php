@@ -1,5 +1,6 @@
 <?php namespace DocRaptor;
 
+use DocRaptor\Config;
 use DocRaptor\Exception\BadRequestException;
 use DocRaptor\Exception\ForbiddenException;
 use DocRaptor\Exception\UnauthorizedException;
@@ -28,7 +29,9 @@ class HttpClient implements HttpTransferInterface
         curl_setopt($ch, CURLOPT_POST, count($postFields));
         curl_setopt($ch, CURLOPT_POSTFIELDS, $queryString);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_USERAGENT, HttpClient::userAgent());
+        if (Config::Instance()->getReportUserAgent()) {
+            curl_setopt($ch, CURLOPT_USERAGENT, HttpClient::userAgent());
+        }
         $result = curl_exec($ch);
 
         if (!$result) {
@@ -63,6 +66,6 @@ class HttpClient implements HttpTransferInterface
      * or at least differ from the official wrapper.
      */
     public static function userAgent() {
-        return sprintf('expectedbehavior_php-docraptor/%s PHP/%s', ApiWrapper::$version, phpversion());
+        return sprintf('expectedbehavior_php-docraptor/%s PHP/%s', Config::Instance()->getVersion(), phpversion());
     }
 }

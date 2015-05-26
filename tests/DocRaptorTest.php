@@ -1,6 +1,7 @@
 <?php
 
 use DocRaptor\ApiWrapper;
+use DocRaptor\Config;
 use DocRaptor\HttpClientMock;
 
 class DocRaptorTest extends PHPUnit_Framework_TestCase
@@ -25,7 +26,7 @@ class DocRaptorTest extends PHPUnit_Framework_TestCase
 
     public function testVersion()
     {
-        $this->assertEquals('1.0.1', ApiWrapper::$version);
+        $this->assertEquals('1.0.1', Config::Instance()->getVersion());
     }
 
     public function testCanConstructWithoutApiKey()
