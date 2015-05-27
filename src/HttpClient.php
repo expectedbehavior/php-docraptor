@@ -14,6 +14,20 @@ use Exception;
  */
 class HttpClient implements HttpTransferInterface
 {
+    // Wrapper configuration
+    protected $config;
+
+    /**
+     * @param Config $config
+     */
+    public function __construct(Config $config = null)
+    {
+        if (is_null($config)) {
+            $config = new Config();
+        }
+        $this->config = $config;
+    }
+
     /**
      * @param string $uri
      * @param array $postFields
@@ -29,8 +43,8 @@ class HttpClient implements HttpTransferInterface
         curl_setopt($ch, CURLOPT_POST, count($postFields));
         curl_setopt($ch, CURLOPT_POSTFIELDS, $queryString);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        if (Config::Instance()->getReportUserAgent()) {
-            curl_setopt($ch, CURLOPT_USERAGENT, HttpClient::userAgent());
+        if ($config->getReportUserAgent()) {
+            curl_setopt($ch, CURLOPT_USERAGENT, userAgent());
         }
         $result = curl_exec($ch);
 
@@ -65,7 +79,7 @@ class HttpClient implements HttpTransferInterface
      * DocRaptor servers, please change the userAgent string to reflect your new repo's name
      * or at least differ from the official wrapper.
      */
-    public static function userAgent() {
-        return sprintf('expectedbehavior_php-docraptor/%s PHP/%s', Config::Instance()->getVersion(), phpversion());
+    public function userAgent() {
+        return sprintf('expectedbehavior_php-docraptor/%s PHP/%s', $this->config->getVersion(), phpversion());
     }
 }

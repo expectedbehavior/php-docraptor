@@ -2,6 +2,7 @@
 
 use DocRaptor\ApiWrapper;
 use DocRaptor\Config;
+use DocRaptor\HttpClient;
 use DocRaptor\HttpClientMock;
 
 class DocRaptorTest extends PHPUnit_Framework_TestCase
@@ -26,7 +27,14 @@ class DocRaptorTest extends PHPUnit_Framework_TestCase
 
     public function testVersion()
     {
-        $this->assertEquals('1.0.1', Config::Instance()->getVersion());
+        $this->assertEquals('1.0.1', (new Config())->getVersion());
+    }
+
+    public function testUserAgent()
+    {
+        $client = new HttpClient();
+        $this->assertEquals($client->userAgent(),
+                            sprintf('expectedbehavior_php-docraptor/1.0.1 PHP/%s', phpversion()));
     }
 
     public function testCanConstructWithoutApiKey()

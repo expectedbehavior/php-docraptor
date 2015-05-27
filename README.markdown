@@ -38,6 +38,17 @@ Since we're injecting a `HttpTransferInterface` interface into the `ApiWrapper` 
 
 The provided `HttpClient` is a very simple domain specific curl wrapper that extracts all curl functions from the `ApiWrapper` which makes it possible to inject a mock client for testing.
 
+### Privacy
+
+By default this library will report usage statistics - the api wrapper version and PHP version - to the DocRaptor service by way of a user agent string. You can disable this by providing a config object to the `ApiWrapper` constructor or the `HttpClient` constructor.
+
+    $config     = new DocRaptor\Config(false);
+    $httpClient = new DocRaptor\HttpClient($config);
+    $docRaptor  = new DocRaptor\ApiWrapper($api_key, $httpClient, $config);
+    // or
+    $config    = new DocRaptor\Config(false);
+    $docRaptor = new DocRaptor\ApiWrapper($api_key, null, $config); // will use HttpClient by default
+
 ##Options
 
 ###HTTPS or HTTP
