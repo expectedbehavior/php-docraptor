@@ -27,14 +27,15 @@ class DocRaptorTest extends PHPUnit_Framework_TestCase
 
     public function testVersion()
     {
-        $this->assertEquals('1.0.1', (new Config())->getVersion());
+        $this->assertRegExp('/\A\d+\.\d+\.\d+\z/', (new Config())->getVersion());
     }
 
     public function testUserAgent()
     {
-        $client = new HttpClient();
+        $config = new Config();
+        $client = new HttpClient($config);
         $this->assertEquals($client->userAgent(),
-                            sprintf('expectedbehavior_php-docraptor/1.0.1 PHP/%s', phpversion()));
+                            sprintf('expectedbehavior_php-docraptor/%s PHP/%s', $config->getVersion(), phpversion()));
     }
 
     public function testCanConstructWithoutApiKey()
