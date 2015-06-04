@@ -1,3 +1,3 @@
 <?php
 
-require_once( __DIR__ . '/../src/DocRaptor.php');
+// Add things here that need to be run before the tests
