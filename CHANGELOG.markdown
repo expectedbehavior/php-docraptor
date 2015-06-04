@@ -1,6 +1,6 @@
 # DocRaptor API PHP Wrapper
 
-## Unreleased
+## 1.1.0
 * Add documentation for submitting issues and PRs
 * [fix psr-4 compatibility](https://github.com/expectedbehavior/php-docraptor/pull/33). Could be a breaking bug so we are minor version bumping.
 
