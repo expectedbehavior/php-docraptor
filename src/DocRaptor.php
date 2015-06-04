@@ -2,6 +2,7 @@
 
 use Exception;
 use InvalidArgumentException;
+use DocRaptor\Config;
 use DocRaptor\Exception\MissingAPIKeyException;
 use DocRaptor\Exception\MissingContentException;
 
@@ -15,6 +16,9 @@ class ApiWrapper
      * @var HttpTransferInterface
      */
     protected $httpClient;
+
+    // Wrapper configuration
+    protected $config;
 
     // Service and HTTP
     protected $api_key;
@@ -43,15 +47,21 @@ class ApiWrapper
     /**
      * @param string|null $api_key
      * @param HttpTransferInterface $httpClient
+     * @param Config $config
      */
-    public function __construct($api_key = null, HttpTransferInterface $httpClient = null)
+    public function __construct($api_key = null, HttpTransferInterface $httpClient = null, Config $config = null)
     {
         if (!is_null($api_key)) {
             $this->api_key = $api_key;
         }
 
+        if (is_null($config)) {
+            $config = new Config();
+        }
+        $this->config = $config;
+
         if (is_null($httpClient)) {
-            $httpClient = new HttpClient();
+            $httpClient = new HttpClient($config);
         }
 
         $this->httpClient = $httpClient;
