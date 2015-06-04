@@ -15,7 +15,7 @@ At the moment, this library still works with PHP 5.3, but we don't guarantee tha
 This library is PSR-4 autoloading compliant and you can install it via composer. Just require it in your `composer.json`.
 ```javascript
 "require": {
-    "expectedbehavior/php-docraptor": "1.0.1"
+    "expectedbehavior/php-docraptor": "1.1.0"
 }
 ```
 
@@ -65,3 +65,9 @@ $docRaptor->setSecure(false);
 ```
 
 NB! It IS not secure, you're basically broadcasting your api key over the network.
+
+## Contributing
+
+If you find a bug, please make a [new GitHub issue](https://github.com/expectedbehavior/php-docraptor/issues/new). If you know how to solve it, make a branch and once you're done make a [new pull request](https://github.com/expectedbehavior/php-docraptor/compare).
+
+When submitting a PR, you will need to [install composer](https://getcomposer.org/doc/00-intro.md) to run the tests. Once you have it installed, in the project root, run `composer install`. To run the tests from the project root, run `vendor/bin/phpunit`. They should all pass! Also we have travis and scrutinizer integration, so you can check those in your PR for things that could be better or don't work.
