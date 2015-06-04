@@ -2,7 +2,7 @@
 
 ## Unreleased
 * Add documentation for submitting issues and PRs
-* [fix psr-4 compatibility](). Could be a breaking bug so we are minor version bumping.
+* [fix psr-4 compatibility](https://github.com/expectedbehavior/php-docraptor/pull/33). Could be a breaking bug so we are minor version bumping.
 
 ## 1.0.1
 * Added this changelog
