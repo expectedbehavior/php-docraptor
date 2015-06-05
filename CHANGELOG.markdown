@@ -1,5 +1,10 @@
 # DocRaptor API PHP Wrapper
 
+## 1.1.1
+* Change documentation to use a live test API key
+* Fix some syntax issues that were causing problems
+* Add an example script to test the live site to make sure basic document creation is working
+
 ## 1.1.0
 * Add documentation for submitting issues and PRs
 * [fix psr-4 compatibility](https://github.com/expectedbehavior/php-docraptor/pull/33). Could be a breaking bug so we are minor version bumping.
