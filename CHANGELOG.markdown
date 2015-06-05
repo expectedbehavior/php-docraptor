@@ -5,7 +5,7 @@
 * Fix some syntax issues that were causing problems
 * Add an example script to test the live site to make sure basic document creation is working
 
-## 1.1.0
+## 1.1.0 - YANKED
 * Add documentation for submitting issues and PRs
 * [fix psr-4 compatibility](https://github.com/expectedbehavior/php-docraptor/pull/33). Could be a breaking bug so we are minor version bumping.
 

@@ -9,7 +9,7 @@
 final class Config
 {
     // The library version
-    protected static $version = '1.1.0';
+    protected static $version = '1.1.1';
 
     // Statistics reporting
     protected $reportUserAgent;
