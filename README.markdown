@@ -15,7 +15,7 @@ At the moment, this library still works with PHP 5.3, but we don't guarantee tha
 This library is PSR-4 autoloading compliant and you can install it via composer. Just require it in your `composer.json`.
 ```javascript
 "require": {
-    "expectedbehavior/php-docraptor": "1.1.0"
+    "expectedbehavior/php-docraptor": "1.1.1"
 }
 ```
 
@@ -25,7 +25,7 @@ Then run `composer update` resp. `composer install`.
 ###Simple
 
 ```php
-$docRaptor = new DocRaptor\ApiWrapper($api_key); // Or omit the API key and pass it in via setter
+$docRaptor = new DocRaptor\ApiWrapper("YOUR_API_KEY_HERE"); // Or omit the API key and pass it in via setter
 $docRaptor->setDocumentContent('<h1>Hello!</h1>')->setDocumentType('pdf')->setTest(true)->setName('output.pdf');
 $file = $docRaptor->fetchDocument();
 ```
@@ -37,7 +37,7 @@ Since we're injecting a `HttpTransferInterface` interface into the `ApiWrapper` 
 
 ```php
 $httpClient = new DocRaptor\HttpClient();
-$docRaptor  = new DocRaptor\ApiWrapper($api_key, $httpClient);
+$docRaptor  = new DocRaptor\ApiWrapper("YOUR_API_KEY_HERE", $httpClient);
 ```
 
 The provided `HttpClient` is a very simple domain specific curl wrapper that extracts all curl functions from the `ApiWrapper` which makes it possible to inject a mock client for testing.
@@ -49,10 +49,10 @@ By default this library will report usage statistics - the api wrapper version a
 ```php
 $config     = new DocRaptor\Config(false);
 $httpClient = new DocRaptor\HttpClient($config);
-$docRaptor  = new DocRaptor\ApiWrapper($api_key, $httpClient, $config);
+$docRaptor  = new DocRaptor\ApiWrapper("YOUR_API_KEY_HERE", $httpClient, $config);
 // or
 $config    = new DocRaptor\Config(false);
-$docRaptor = new DocRaptor\ApiWrapper($api_key, null, $config); // will use HttpClient by default
+$docRaptor = new DocRaptor\ApiWrapper("YOUR_API_KEY_HERE", null, $config); // will use HttpClient by default
 ```
 
 ##Options

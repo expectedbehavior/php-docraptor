@@ -43,8 +43,8 @@ class HttpClient implements HttpTransferInterface
         curl_setopt($ch, CURLOPT_POST, count($postFields));
         curl_setopt($ch, CURLOPT_POSTFIELDS, $queryString);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        if ($config->getReportUserAgent()) {
-            curl_setopt($ch, CURLOPT_USERAGENT, userAgent());
+        if ($this->config->getReportUserAgent()) {
+            curl_setopt($ch, CURLOPT_USERAGENT, $this->userAgent());
         }
         $result = curl_exec($ch);
 

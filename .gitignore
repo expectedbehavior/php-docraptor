@@ -12,3 +12,8 @@ composer.lock
 
 # ignore the output file for phpunit
 test.txt
+
+# ignore test docs in the example directory
+examples/*pdf
+examples/*xls
+examples/*xlsx
