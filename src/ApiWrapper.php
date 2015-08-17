@@ -29,6 +29,7 @@ class ApiWrapper
     protected $document_type    = 'pdf';
     protected $document_content;
     protected $document_url;
+    protected $document_prince_options;
 
     // Document creation
     protected $strict           = 'none';
@@ -229,6 +230,20 @@ class ApiWrapper
         return $this;
     }
 
+
+    /**
+     * Prince option, set document prince options
+     *
+     * @param string $baseurl
+     * @return $this
+     */
+    public function setDocumentPrinceOptions($options)
+    {
+        $this->document_prince_options = $options;
+        return $this;
+
+    }
+
     /**
      * Main method that makes the actual API call
      *
@@ -262,6 +277,12 @@ class ApiWrapper
 
         if (!empty($this->baseurl)) {
             $fields['doc[prince_options][baseurl]'] = $this->baseurl;
+        }
+
+        if (!empty($this->document_prince_options) && is_array($this->document_prince_options)) {
+            foreach($this->document_prince_options as $key=>$loop){
+                $fields['doc[prince_options]['.$key.']'] = $loop;
+            }
         }
 
         if (!empty($this->document_content)) {
