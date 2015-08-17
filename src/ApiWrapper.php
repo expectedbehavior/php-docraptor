@@ -234,7 +234,7 @@ class ApiWrapper
     /**
      * Prince option, set document prince options
      *
-     * @param string $baseurl
+     * @param string $document_prince_options
      * @return $this
      */
     public function setDocumentPrinceOptions($options)
