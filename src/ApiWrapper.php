@@ -236,9 +236,9 @@ class ApiWrapper
      * @param array $document_prince_options
      * @return $this
      */
-    public function setDocumentPrinceOptions(array $options)
+    public function setDocumentPrinceOptions(array $document_prince_options)
     {
-        $this->document_prince_options = $options;
+        $this->document_prince_options = $document_prince_options;
         return $this;
 
     }
