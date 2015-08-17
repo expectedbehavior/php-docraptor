@@ -233,10 +233,10 @@ class ApiWrapper
     /**
      * Prince option, set document prince options
      *
-     * @param string $document_prince_options
+     * @param array $document_prince_options
      * @return $this
      */
-    public function setDocumentPrinceOptions($options)
+    public function setDocumentPrinceOptions(array $options)
     {
         $this->document_prince_options = $options;
         return $this;
