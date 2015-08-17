@@ -44,7 +44,6 @@ class ApiWrapper
     // Prince Options
     protected $baseurl;
 
-
     /**
      * @param string|null $api_key
      * @param HttpTransferInterface $httpClient
