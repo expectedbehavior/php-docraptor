@@ -30,7 +30,8 @@ class ApiWrapper
     protected $document_content;
     protected $document_url;
     protected $document_prince_options;
-
+    protected $baseurl;
+    
     // Document creation
     protected $strict           = 'none';
     protected $javascript       = false;
@@ -40,9 +41,6 @@ class ApiWrapper
     protected $tag;
     protected $test             = false;
     protected $help             = false;
-
-    // Prince Options
-    protected $baseurl;
 
     /**
      * @param string|null $api_key
@@ -278,7 +276,7 @@ class ApiWrapper
             $fields['doc[prince_options][baseurl]'] = $this->baseurl;
         }
 
-        if (!empty($this->document_prince_options) && is_array($this->document_prince_options)) {
+        if (is_array($this->document_prince_options)) {
             foreach($this->document_prince_options as $key=>$loop){
                 $fields['doc[prince_options]['.$key.']'] = $loop;
             }
