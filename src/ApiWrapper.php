@@ -22,25 +22,25 @@ class ApiWrapper
 
     // Service and HTTP
     protected $api_key;
-    protected $url_protocol     = 'https';
-    protected $api_url          = 'docraptor.com/docs';
+    protected $url_protocol             = 'https';
+    protected $api_url                  = 'docraptor.com/docs';
 
     // Output document related
-    protected $document_type    = 'pdf';
+    protected $document_type            = 'pdf';
     protected $document_content;
     protected $document_url;
-    protected $document_prince_options;
+    protected $document_prince_options  = array();
     protected $baseurl;
     
     // Document creation
-    protected $strict           = 'none';
-    protected $javascript       = false;
+    protected $strict                   = 'none';
+    protected $javascript               = false;
 
     // Meta Settings
-    protected $name             = 'default';
+    protected $name                     = 'default';
     protected $tag;
-    protected $test             = false;
-    protected $help             = false;
+    protected $test                     = false;
+    protected $help                     = false;
 
     /**
      * @param string|null $api_key
@@ -276,10 +276,8 @@ class ApiWrapper
             $fields['doc[prince_options][baseurl]'] = $this->baseurl;
         }
 
-        if (is_array($this->document_prince_options)) {
-            foreach($this->document_prince_options as $key=>$loop){
-                $fields['doc[prince_options]['.$key.']'] = $loop;
-            }
+        foreach($this->document_prince_options as $key=>$loop){
+            $fields['doc[prince_options]['.$key.']'] = $loop;
         }
 
         if (!empty($this->document_content)) {
