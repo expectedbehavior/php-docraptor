@@ -29,22 +29,31 @@ $docRaptor = new DocRaptor\ApiWrapper("YOUR_API_KEY_HERE"); // Or omit the API k
 $docRaptor->setDocumentContent('<h1>Hello!</h1>')->setDocumentType('pdf')->setTest(true)->setName('output.pdf');
 $file = $docRaptor->fetchDocument();
 ```
-fetchDocument() returns file contents by default.  Optionally, the fetchDocument() method takes a file path as an argument.  If you provide
-a path, the class will attempt to write the returned value to the path you provided.
 
-###Setting Prince Specific Options
-The API wrapper has the ability to set "prince_options" that is noted in the API documentation.  Available array keys can be found in the API documentation.  Example of putting in prince options (version and PDF profile)
+`fetchDocument()` returns document contents by default.  You can optionally provide a file path to the `fetchDocument()` method, and the wrapper will attempt to write the returned value to that file path.
+
+###Advanced
+
+####Setting Prince Specific Options
+The API wrapper has the ability to set `prince_options` that is noted in the [API documentation](https://docraptor.com/documentation#pdf_options), where available keys are listed.
+
+Example of setting prince version and [PDF profile](https://en.wikipedia.org/wiki/PDF/A#PDF.2FA-1):
 
 ```php
-$options = array();
-$options['version'] = "10";
-$options['profile'] = "PDF/A-1b";
-$docRaptor = new DocRaptor\ApiWrapper("YOUR_API_KEY_HERE"); // Or omit the API key and pass it in via setter
-$docRaptor->setDocumentContent('<h1>Hello!</h1>')->setDocumentType('pdf')->setTest(true)->setName('output.pdf')->setDocumentPrinceOptions($options);
+$docRaptor = new DocRaptor\ApiWrapper("YOUR_API_KEY_HERE");
+$docRaptor
+    ->setDocumentContent('<h1>Hello!</h1>')
+    ->setDocumentType('pdf')
+    ->setTest(true)
+    ->setName('output.pdf')
+    ->setDocumentPrinceOptions(array(
+        'version' => '10',
+        'profile' => 'PDF/A-1b',
+    ));
 $file = $docRaptor->fetchDocument();
 ```
 
-###Advanced
+#### Alternate HTTP Implementation
 Since we're injecting a `HttpTransferInterface` interface into the `ApiWrapper` you can either inject the provided `HttpClient` or inject your own implementation of the interface.
 
 ```php
