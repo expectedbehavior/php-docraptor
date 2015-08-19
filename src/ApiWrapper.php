@@ -31,7 +31,7 @@ class ApiWrapper
     protected $document_url;
     protected $document_prince_options  = array();
     protected $baseurl;
-    
+
     // Document creation
     protected $strict                   = 'none';
     protected $javascript               = false;

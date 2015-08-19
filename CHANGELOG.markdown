@@ -1,5 +1,8 @@
 # DocRaptor API PHP Wrapper
 
+## 1.2.0
+* Add `setDocumentPrinceOptions` method to allow further control of PDF output DocRaptor's [supported prince options](https://docraptor.com/documentation#pdf_options)
+
 ## 1.1.1
 * Change documentation to use a live test API key
 * Fix some syntax issues that were causing problems
