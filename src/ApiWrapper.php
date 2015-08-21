@@ -88,7 +88,7 @@ class ApiWrapper
      * @param boolean $async
      * @return $this
      */
-    public function setJavascript($async)
+    public function setAsync($async)
     {
         $this->async = $async;
         return $this;
