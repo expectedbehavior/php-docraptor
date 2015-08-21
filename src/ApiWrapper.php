@@ -295,7 +295,7 @@ class ApiWrapper
             'doc[async]'         => $this->async,
         );
         
-        if (!empty($this->callback_url)) {
+        if (!empty($this->callback_url) && $this->async == true) {
             $fields['doc[callback_url]'] = $this->callback_url;
         }
         
