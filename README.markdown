@@ -96,6 +96,15 @@ $docRaptor->setAsync(true);
 
 Synchronous requests will return the file contents where as asynchronous requests will return a json response.  Examples of the response can be found in the [API documentation](https://docraptor.com/documentation#api_async)
 
+###Async Callback URL
+If *setAsync()* is true and you want DocRaptor to do a POST request to your system when an asynchronous job has generated you can set the callback url via *setCallbackUrl()*:
+
+```php
+$docRaptor->setCallbackUrl('http://your-url.com');
+```
+
+Details on the POST request can be found in the [API documentation](https://docraptor.com/documentation#api_callback_url)
+
 ## Contributing
 
 If you find a bug, please make a [new GitHub issue](https://github.com/expectedbehavior/php-docraptor/issues/new). If you know how to solve it, make a branch and once you're done make a [new pull request](https://github.com/expectedbehavior/php-docraptor/compare).
