@@ -24,7 +24,7 @@ class ApiWrapper
     protected $api_key;
     protected $url_protocol             = 'https';
     protected $api_url                  = 'docraptor.com/docs';
-    protected $async                     = false;
+    protected $async                    = false;
 
     // Output document related
     protected $document_type            = 'pdf';
