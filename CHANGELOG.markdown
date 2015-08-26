@@ -1,5 +1,8 @@
 # DocRaptor API PHP Wrapper
 
+## 1.3.0
+* Add `setAsync` and `setCallbackUrl` methods to allow for basic [asynchronous doc generation](https://docraptor.com/documentation#api_async)
+
 ## 1.2.0
 * Add `setDocumentPrinceOptions` method to allow further control of PDF output DocRaptor's [supported prince options](https://docraptor.com/documentation#pdf_options)
 
