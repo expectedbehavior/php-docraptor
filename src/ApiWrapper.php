@@ -304,7 +304,7 @@ class ApiWrapper
             $fields['doc[prince_options][baseurl]'] = $this->baseurl;
         }
 
-        foreach($this->document_prince_options as $key=>$loop){
+        foreach ($this->document_prince_options as $key=>$loop) {
             $fields['doc[prince_options]['.$key.']'] = $loop;
         }
 
