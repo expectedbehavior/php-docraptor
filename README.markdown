@@ -15,7 +15,7 @@ At the moment, this library still works with PHP 5.3, but we don't guarantee tha
 This library is PSR-4 autoloading compliant and you can install it via composer. Just require it in your `composer.json`.
 ```javascript
 "require": {
-    "expectedbehavior/php-docraptor": "1.2.0"
+    "expectedbehavior/php-docraptor": "1.3.0"
 }
 ```
 
