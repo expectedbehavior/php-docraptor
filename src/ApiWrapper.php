@@ -92,7 +92,7 @@ class ApiWrapper
     public function setAsync($async)
     {
         $flag = (true === $async) ? true : false;
-        $this->async = $async;
+        $this->async = $flag;
         return $this;
     }
 
