@@ -45,7 +45,7 @@ class ApiWrapper
     protected $help                     = false;
 
     /**
-     * @param string|null $api_key
+     * @param string $api_key
      * @param HttpTransferInterface $httpClient
      * @param Config $config
      */
