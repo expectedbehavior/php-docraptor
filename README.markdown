@@ -3,7 +3,7 @@
 #PHP-DocRaptor
 
 PHP-DocRaptor is a simple API wrapper for [DocRaptor.com](https://docraptor.com/).
-You will need a DocRaptor account before you can use this library, as it requires a valid API key.
+You will need a DocRaptor [account](https://docraptor.com/plans) before you can use this library, as it requires a valid API key.
 
 ##Dependencies
 This wrapper requires PHP 5.4 or newer. PHP 5.4 support will be dropped when it reaches EOL. We strongly advise to migrate your projects to PHP 5.6. Other than that, only the PHP curl extension is needed.
@@ -22,7 +22,6 @@ This library is PSR-4 autoloading compliant and you can install it via composer.
 Then run `composer update` resp. `composer install`.
 
 ##Usage
-###Simple
 
 ```php
 $docRaptor = new DocRaptor\ApiWrapper("YOUR_API_KEY_HERE"); // Or omit the API key and pass it in via setter
@@ -30,9 +29,9 @@ $docRaptor->setDocumentContent('<h1>Hello!</h1>')->setDocumentType('pdf')->setTe
 $file = $docRaptor->fetchDocument();
 ```
 
-`fetchDocument()` returns document contents by default.  You can optionally provide a file path to the `fetchDocument()` method, and the wrapper will attempt to write the returned value to that file path.
+`fetchDocument` returns document contents by default.  You can optionally provide a file path to the `fetchDocument` method, and the wrapper will attempt to write the returned value to that file path.
 
-###Advanced
+###Options
 
 ####Setting Prince Specific Options
 The API wrapper has the ability to set `prince_options` that is noted in the [API documentation](https://docraptor.com/documentation#pdf_options), where available keys are listed.
@@ -53,15 +52,32 @@ $docRaptor
 $file = $docRaptor->fetchDocument();
 ```
 
-#### Alternate HTTP Implementation
-Since we're injecting a `HttpTransferInterface` interface into the `ApiWrapper` you can either inject the provided `HttpClient` or inject your own implementation of the interface.
+####Asynchronous
+By default, PHP-DocRaptor submits requests sychronously. However, if you are trying to process large documents, you can  make an asynchronous doc request.  You can choose to do this by passing an argument to the `setAsync` method (`true` for asynchronous, `false` for synchronous request):
 
 ```php
-$httpClient = new DocRaptor\HttpClient();
-$docRaptor  = new DocRaptor\ApiWrapper("YOUR_API_KEY_HERE", $httpClient);
+$docRaptor->setAsync(true);
 ```
 
-The provided `HttpClient` is a very simple domain specific curl wrapper that extracts all curl functions from the `ApiWrapper` which makes it possible to inject a mock client for testing.
+Synchronous requests will return the file contents where as asynchronous requests will return a json response.  Examples of the response can be found in the [API documentation](https://docraptor.com/documentation#api_async)
+
+####Async Callback URL
+If `setAsync(true)` is called and you want DocRaptor to do a POST request to your system when an asynchronous job has finished you can set the callback url via `setCallbackUrl`:
+
+```php
+$docRaptor->setCallbackUrl('http://example.com/callback');
+```
+
+Details on the POST request can be found in the [API documentation](https://docraptor.com/documentation#api_callback_url)
+
+####HTTPS or HTTP
+By default, PHP-DocRaptor submits requests over https.  You can choose to submit via http by passing an argument to the `setSecure` method (`true` for https, `false` for http):
+
+```php
+$docRaptor->setSecure(false);
+```
+
+NB! It IS not secure, you're basically broadcasting your api key over the network.
 
 ### Privacy
 
@@ -76,34 +92,15 @@ $config    = new DocRaptor\Config(false);
 $docRaptor = new DocRaptor\ApiWrapper("YOUR_API_KEY_HERE", null, $config); // will use HttpClient by default
 ```
 
-##Options
-
-###HTTPS or HTTP
-By default, PHP-DocRaptor submits requests over https.  You can choose to submit via http by passing an argument to the *setSecure()* method (true for https, false for http):
+### Alternate HTTP Implementation
+Since we're injecting a `HttpTransferInterface` interface into the `ApiWrapper` you can either inject the provided `HttpClient` or inject your own implementation of the interface.
 
 ```php
-$docRaptor->setSecure(false);
+$httpClient = new DocRaptor\HttpClient();
+$docRaptor  = new DocRaptor\ApiWrapper("YOUR_API_KEY_HERE", $httpClient);
 ```
 
-NB! It IS not secure, you're basically broadcasting your api key over the network.
-
-###Async
-By default, PHP-DocRaptor submits requests by synchronous.  However, if you are trying to process large files you will need to make an asynchronous request.  You can choose to do this by passing an argument to the *setAsync()* method (true for asynchronous, false for synchronous request):
-
-```php
-$docRaptor->setAsync(true);
-```
-
-Synchronous requests will return the file contents where as asynchronous requests will return a json response.  Examples of the response can be found in the [API documentation](https://docraptor.com/documentation#api_async)
-
-###Async Callback URL
-If *setAsync()* is true and you want DocRaptor to do a POST request to your system when an asynchronous job has generated you can set the callback url via *setCallbackUrl()*:
-
-```php
-$docRaptor->setCallbackUrl('http://your-url.com');
-```
-
-Details on the POST request can be found in the [API documentation](https://docraptor.com/documentation#api_callback_url)
+The provided `HttpClient` is a very simple domain specific curl wrapper that extracts all curl functions from the `ApiWrapper` which makes it possible to inject a mock client for testing.
 
 ## Contributing
 
