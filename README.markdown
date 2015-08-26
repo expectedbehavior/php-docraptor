@@ -107,3 +107,16 @@ The provided `HttpClient` is a very simple domain specific curl wrapper that ext
 If you find a bug, please make a [new GitHub issue](https://github.com/expectedbehavior/php-docraptor/issues/new). If you know how to solve it, make a branch and once you're done make a [new pull request](https://github.com/expectedbehavior/php-docraptor/compare).
 
 When submitting a PR, you will need to [install composer](https://getcomposer.org/doc/00-intro.md) to run the tests. Once you have it installed, in the project root, run `composer install`. To run the tests from the project root, run `vendor/bin/phpunit`. They should all pass! Also we have travis and scrutinizer integration, so you can check those in your PR for things that could be better or don't work.
+
+## Releasing
+
+With the new version number:
+
+* Update [`CHANGELOG.markdown`](https://github.com/expectedbehavior/php-docraptor/blob/master/CHANGELOG.markdown)
+* Update [`composer.json`](https://github.com/expectedbehavior/php-docraptor/blob/master/composer.json)
+* Update install directions in [`README.markdown`](https://github.com/expectedbehavior/php-docraptor/blob/master/README.markdown#installation)
+* Update [`Config.php`](https://github.com/expectedbehavior/php-docraptor/blob/master/src/Config.php)
+* `git tag <version>`
+* `git push origin master --tags`
+
+After pushing your new tagged version, make sure the new version shows up on [Packagist](https://packagist.org/packages/expectedbehavior/php-docraptor).
