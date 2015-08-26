@@ -24,6 +24,8 @@ class ApiWrapper
     protected $api_key;
     protected $url_protocol             = 'https';
     protected $api_url                  = 'docraptor.com/docs';
+    protected $async                    = false;
+    protected $callback_url;
 
     // Output document related
     protected $document_type            = 'pdf';
@@ -81,6 +83,26 @@ class ApiWrapper
     public function getApiKey()
     {
         return $this->api_key;
+    }
+    
+    /**
+     * @param boolean $async
+     * @return $this
+     */
+    public function setAsync($async)
+    {
+        $this->async = $async;
+        return $this;
+    }
+    
+    /**
+     * @param string|null $callback_url
+     * @return $this
+     */
+    public function setCallbackUrl($callback_url)
+    {
+        $this->callback_url = $callback_url;
+        return $this;
     }
 
     /**
@@ -270,8 +292,13 @@ class ApiWrapper
             'doc[test]'          => $this->test,
             'doc[strict]'        => $this->strict,
             'doc[javascript]'    => $this->javascript,
+            'doc[async]'         => $this->async,
         );
-
+        
+        if (!empty($this->callback_url) && $this->async == true) {
+            $fields['doc[callback_url]'] = $this->callback_url;
+        }
+        
         if (!empty($this->baseurl)) {
             $fields['doc[prince_options][baseurl]'] = $this->baseurl;
         }
