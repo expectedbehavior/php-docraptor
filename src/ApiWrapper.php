@@ -84,17 +84,18 @@ class ApiWrapper
     {
         return $this->api_key;
     }
-    
+
     /**
      * @param boolean $async
      * @return $this
      */
     public function setAsync($async)
     {
+        $flag = (true === $async) ? true : false;
         $this->async = $async;
         return $this;
     }
-    
+
     /**
      * @param string|null $callback_url
      * @return $this
@@ -294,11 +295,11 @@ class ApiWrapper
             'doc[javascript]'    => $this->javascript,
             'doc[async]'         => $this->async,
         );
-        
-        if (!empty($this->callback_url) && $this->async == true) {
+
+        if (!empty($this->callback_url) && $this->async) {
             $fields['doc[callback_url]'] = $this->callback_url;
         }
-        
+
         if (!empty($this->baseurl)) {
             $fields['doc[prince_options][baseurl]'] = $this->baseurl;
         }
